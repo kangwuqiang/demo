@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .transition{
+            width: 50px;
+            height: 50px;
+            background: green;
+            transition: all 2s;
+        }
+        .transition:hover{
+            width: 200px;
+        }
+        .animation{
+            width: 50px;
+            height: 50px;
+            background: hotpink;
+            margin-top: 100px;
+            animation: an 2s linear 2s;
+        }
+        @keyframes an {
+            from{
+
+            }
+            to{
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="transition"></div>
+<div class="animation"></div>
+<script>
+    window.onload = function () {
+        /*只要当前元素过渡执行完成了就触发*/
+        document.querySelector('.transition').addEventListener('transitionend',function(){
+            console.log('过渡结束了');
+        });
+        /*只要当前元素动画执行完成了就触发*/
+        document.querySelector('.animation').addEventListener('animationend',function(){
+            console.log('动画结束了');
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <title>移动端衍生事件</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: hotpink;
+        }
+    </style>
+</head>
+<body>
+<!--
+都是由touch事件衍生得来的   是移动端本不支持的  封装之后才有这样一些事件
+1.tap  轻触  (singleTap longTap doubleTap tap)
+2.swipe  滑动 (swipeLeft swipeRight swipeTop swipeBottom)
+在移动端常见一些库会使用   库去封装的。 比如：zepto
+-->
+<!--
+原理
+swipe:滑动手势  做完手势之后才会触发事件
+条件：上下滑动手势   滑动了移一定的距离  50px   移动滑动过
+-->
+<div class="box"></div>
+<script>
+    window.onload = function () {
+        var box = document.querySelector('.box');
+
+        /*1.touchstart*/
+        var startY = 0;
+        var distance = 0;
+        var isMove = false;
+        box.addEventListener('touchstart',function (e) {
+            startY = e.touches[0].clientY;
+        });
+        /*2.touchmove*/
+        box.addEventListener('touchmove',function (e) {
+            var moveY = e.touches[0].clientY;
+            distance = moveY-startY;
+            isMove = true;
+        });
+        /*3.touchend*/
+        box.addEventListener('touchend',function (e) {
+            /*移动滑动过  滑动的距离 50px  */
+            if(isMove && Math.abs(distance) > 50){
+                console.log('滑动事件满足');
+                if(distance > 0){
+                    console.log('下滑事件');
+                }else {
+                    console.log('上滑事件')
+                }
+            }
+
+            isMove = false;
+            distance = 0;
+            startY = 0;
+        });
+    }
+</script>
+</body>
+</html>

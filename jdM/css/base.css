@@ -1,0 +1,74 @@
+/*================reset css===================*/
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    /*移动端尺寸设置*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*清除点击高亮*/
+    tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+body{
+    font-size: 14px;
+    color: #333;
+    font-family: "Microsoft YaHei",sans-serif;
+}
+a{
+    color: #333;
+    text-decoration: none;
+}
+a:hover{
+    color: #333;
+}
+ul{
+    list-style: none;
+}
+input[type="search"],textarea{
+    border: none;
+    outline: none;
+    /*移动端特有 不允许拖拽*/
+    resize:none;
+    /*移动端特有 清除表单默认样式*/
+    -webkit-appearance: none;
+}
+/*====================common css ==============*/
+.clearfix::before,
+.clearfix::after{
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+    clear: both;
+}
+.f_left{
+    float: left;
+}
+.f_right{
+    float: right;
+}
+.m_l10{
+    margin-left:10px;
+}
+.m_r10{
+    margin-right:10px;
+}
+.m_t10{
+    margin-top:10px;
+}
+.m_b10{
+    margin-bottom:10px;
+}
+
+[class^="icon_"],[class*=" icon_"]{
+    background: url("../images/sprites.png") no-repeat;
+    /*2倍图压缩  提供清晰度  不失真*/
+    background-size: 200px 200px;
+}
+
+
+
+

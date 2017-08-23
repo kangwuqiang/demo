@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <title>移动端特有事件touch(触摸)</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: hotpink;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+
+</div>
+
+<!--
+1.移动端特有事件touch(触摸)
+2.包含：
+touchstart      开始触摸屏幕的时候触发
+touchmove       不断触摸屏幕的时候触发
+touchend        离开屏幕的时候触发
+touchcancel     被迫终止触摸操作（例如：来电话）  很少用
+3.怎么绑定
+box.addEventListener('touchstart',function (e) {
+    console.log(e);
+});
+4.了解事件对象  移动端特有的属性(触摸点集合)
+touches          页面上所有的触摸点集合        start,move存在
+targetTouches    目标元素上所有的触摸点集合     start,move存在
+changedTouches   改变过的触摸点集合            start,move,end存在
+5.触摸点集合 每个触摸点对象
+clientX     基于视口的坐标
+clientY
+pageX       基于页面的坐标
+pageY
+screenX     基于屏幕的坐标
+screenY
+-->
+<script>
+    window.onload = function () {
+        var box = document.querySelector('.box');
+
+        /*1.touchstart*/
+        box.addEventListener('touchstart',function (e) {
+            console.log(e);
+        });
+        /*2.touchmove*/
+        box.addEventListener('touchmove',function (e) {
+            console.log(e);
+        });
+        /*3.touchend*/
+        box.addEventListener('touchend',function (e) {
+            console.log(e);
+        });
+
+    }
+</script>
+</body>
+</html>

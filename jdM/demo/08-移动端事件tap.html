@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <title>移动端衍生事件</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: hotpink;
+        }
+    </style>
+</head>
+<body>
+<!--
+都是由touch事件衍生得来的   是移动端本不支持的  封装之后才有这样一些事件
+1.tap  轻触  (singleTap longTap doubleTap tap)
+2.swipe  滑动 (swipeLeft swipeRight swipeTop swipeBottom)
+在移动端常见一些库会使用   库去封装的。 比如：zepto
+-->
+<!--
+原理
+tap:轻触事件   响应更快
+条件：比click快  不能触发滑动
+
+click:点击事件   响应慢（在移动端300ms延时）
+响应过慢的解决方案：
+1.使用框架的tap
+2.使用插件  fastclick.js   直接用click就行了  下载：https://github.com/ftlabs/fastclick/
+-->
+<div class="box"></div>
+<script>
+    window.onload = function () {
+        var box = document.querySelector('.box');
+
+
+        /*条件：比click快 150ms内 不能触发滑动*/
+        var startTime = 0;
+        var isMove = false;
+        box.addEventListener('touchstart',function (e) {
+            startTime = Date.now();
+        });
+        box.addEventListener('touchmove',function (e) {
+            isMove = true;
+        });
+        box.addEventListener('touchend',function (e) {
+            var time = Date.now()-startTime;
+            console.log(time);
+            if(time < 150 && !isMove){
+                console.log('tap');
+            }
+
+            /*重置*/
+            isMove = false;
+            startTime = 0;
+        });
+
+
+        /*box.addEventListener('click',function (e) {
+            console.log('click');
+        });*/
+    }
+</script>
+</body>
+</html>
